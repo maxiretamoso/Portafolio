@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MR_Dev</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet"
+    />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="loader">
+      <div class="spinner"></div>
+      <div class="loader-text">MR_Dev</div>
+    </div>
+
+    <!-- Puntos de navegación verticales -->
+    <div class="nav-dots">
+      <div class="nav-dot" data-section="Acerca de mi" data-target="#acerca"></div>
+      <div class="nav-dot" data-section="Proyectos" data-target="#proyectos"></div>
+      <div class="nav-dot" data-section="Skills" data-target="#skills"></div>
+      <div class="nav-dot" data-section="Contacto" data-target="#contacto"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container-fluid">
+        <a class="imglogo" href="#"
+          ><img src="./images/img1.jpg" alt="maxiImagen"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#acerca">Acerca de mi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#proyectos">Proyectos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#contacto">Contacto</a>
+            </li>
+          </ul>
+          <div class="mode-switch-container text-center my-4">
+            <div class="switch-wrapper">
+              <!-- From Uiverse.io by Galahhad --> 
+              <label class="theme-switch">
+                <input type="checkbox" class="theme-switch__checkbox" id="darkModeToggle">
+                <div class="theme-switch__container">
+                  <div class="theme-switch__clouds"></div>
+                  <div class="theme-switch__stars-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1642 34.9956 19C34.9956 20.1642 35.3837 21.1635 36.1599 22.0069C36.9361 22.8503 37.8798 23.2903 39 23.3545C38.2679 23.3911 37.5976 23.602 36.9802 24.0053C36.3716 24.3995 35.8864 24.9312 35.5248 25.5913C35.172 26.2513 34.9956 26.9572 34.9956 27.7273C34.9956 26.563 34.6075 25.5546 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1642 3.99559 32C3.99559 33.1642 4.38368 34.1635 5.15987 35.0069C5.93605 35.8503 6.87982 36.2903 8 36.3545C7.26792 36.3911 6.59757 36.602 5.98015 37.0053C5.37155 37.3995 4.88644 37.9312 4.52481 38.5913C4.172 39.2513 3.99559 39.9572 3.99559 40.7273C3.99559 39.563 3.6075 38.5546 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56.8313 24.0069C56.0551 24.8503 55.1114 25.2995 54 25.3545C55.1114 25.4095 56.0551 25.8587 56.8313 26.7112C57.6075 27.5546 57.9956 28.563 57.9956 29.7273C57.9956 28.9572 58.172 28.2513 58.5248 27.5913C58.8864 26.9312 59.3716 26.3995 59.9802 26.0053C60.5976 25.602 61.2679 25.3911 62 25.3545C60.8798 25.2903 59.9361 24.8503 59.1599 24.0069C58.3837 23.1635 57.9956 22.1642 57.9956 21C57.9956 22.1642 57.6075 23.1635 56.8313 24.0069ZM81 25.3545C82.1114 25.2995 83.0551 24.8503 83.8313 24.0069C84.6075 23.1635 84.9956 22.1642 84.9956 21C84.9956 22.1642 85.3837 23.1635 86.1599 24.0069C86.9361 24.8503 87.8798 25.2903 89 25.3545C88.2679 25.3911 87.5976 25.602 86.9802 26.0053C86.3716 26.3995 85.8864 26.9312 85.5248 27.5913C85.172 28.2513 84.9956 28.9572 84.9956 29.7273C84.9956 28.563 84.6075 27.5546 83.8313 26.7112C83.0551 25.8587 82.1114 25.4095 81 25.3545ZM136 36.3545C137.111 36.2995 138.055 35.8503 138.831 35.0069C139.607 34.1635 139.996 33.1642 139.996 32C139.996 33.1642 140.384 34.1635 141.16 35.0069C141.936 35.8503 142.88 36.2903 144 36.3545C143.268 36.3911 142.598 36.602 141.98 37.0053C141.372 37.3995 140.886 37.9312 140.525 38.5913C140.172 39.2513 139.996 39.9572 139.996 40.7273C139.996 39.563 139.607 38.5546 138.831 37.7112C138.055 36.8587 137.111 36.4095 136 36.3545ZM101.831 49.0069C101.055 49.8503 100.111 50.2995 99 50.3545C100.111 50.4095 101.055 50.8587 101.831 51.7112C102.607 52.5546 102.996 53.563 102.996 54.7273C102.996 53.9572 103.172 53.2513 103.525 52.5913C103.886 51.9312 104.372 51.3995 104.98 51.0053C105.598 50.602 106.268 50.3911 107 50.3545C105.88 50.2903 104.936 49.8503 104.16 49.0069C103.384 48.1635 102.996 47.1642 102.996 46C102.996 47.1642 102.607 48.1635 101.831 49.0069Z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                  <div class="theme-switch__circle-container">
+                    <div class="theme-switch__sun-moon-container">
+                      <div class="theme-switch__moon">
+                        <div class="theme-switch__spot"></div>
+                        <div class="theme-switch__spot"></div>
+                        <div class="theme-switch__spot"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="acerca" class="descripcion py-5" data-aos="zoom-in">
+      <div class="container">
+        <p class="descripcion">Acerca de mi</p>
+          <p class="descripcion-text">
+            Soy Maximo Felipe Retamoso Trotta, tengo 20 años.
+          </p>
+          <p class="descripcion-text">
+            Nací en Córdoba el 24 de junio de 2005 y actualmente vivo en
+            Concordia, Entre Ríos.
+          </p>
+          <p class="descripcion-text">
+            Me encuentro cursando el segundo año de la carrera Licenciatura en
+            Sistemas en la Universidad Nacional de Entre Ríos (UNER-FCAD), y
+            tambien estoy haciendo un curso de Diseño web en la Universidad
+            Tecnologica Nacional (UTN) con
+            <span class="html-color">HTML</span>,
+            <span class="css-color">CSS</span>, y
+            <span class="js-color">JavaScript</span>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos" class="descripcion py-5" >
+      <p class="descripcion">Proyectos</p>
+      <div class="proyectos-carousel">
+        <div class="carousel-container">
+          <div class="carousel-track">
+            <!-- Tarjeta 1 -->
+            <div class="project-card active">
+              <div class="project-icon">🚌</div>
+              <h3 class="project-title">Sistema de Viajes</h3>
+              <p class="project-description">Sistema de gestión para viajes con colectivos y minibuses, ciudades y viajes programados</p>
+              <div class="project-tech">
+                <span class="tech-tag">Java</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">Ver Código</a>
+              </div>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="project-card">
+              <div class="project-icon">🌳</div>
+              <h3 class="project-title">Estructuras de Datos</h3>
+              <p class="project-description">Trabajo con árboles binarios, colas de prioridad, Array y Heap utilizando distintos métodos de modificacion</p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">Ver Código</a>
+              </div>
+            </div>
+
+            <!-- Tarjeta 3-->
+            <div class="project-card">
+              <div class="project-icon">💻</div>
+              <h3 class="project-title">Maquetación Web</h3>
+              <p class="project-description">Desarrollo web a partir de una maqueta utilizando boostrap y realizando un dieño responsivo</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">Boostrap</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">Ver Código</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Controles del carrusel -->
+        <div class="carousel-controls">
+          <button class="carousel-btn prev-btn" onclick="prevSlide()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
+          <div class="carousel-indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
+          </div>
+          <button class="carousel-btn next-btn" onclick="nextSlide()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="descripcion py-5">
+      <div class="container">
+        <p class="descripcion">Skills</p>
+        <p class="descripcion-text">
+          Poseo sólidos conocimientos en programación y desarrollo de software, dominando conceptos de programación orientada a objetos en Java y Python, incluyendo manejo de clases, constructores, herencia, interfaces, excepciones, hilos y multihilos. Manejo estructuras de datos y algoritmos, incluyendo listas, arrays, pilas, colas, colas de prioridad, heaps, árboles, árboles de búsqueda, grafos, diccionarios y mapeos.
+        </p>
+        <p class="descripcion-text">
+          En desarrollo web, trabajo con HTML, CSS y JavaScript, aplicando la estructura correcta de documentos, etiquetas y elementos, uso de formularios, tablas, listas, enlaces e imágenes. En CSS, manejo selectores, unidades de medida, posicionamiento, diseño responsive, animaciones y transiciones, complementando con Bootstrap para interfaces modernas y adaptables. En JavaScript, manejo variables, ciclos, funciones, arrays, objetos, integrando librerías para mejorar la funcionalidad.
+        </p>
+        <p class="descripcion-text">
+          Puedo modelar soluciones eficientes y aplicar buenas prácticas de programación y diseño de software, integrando diferentes tecnologías para desarrollar proyectos completos con lógica sólida y código mantenible.
+        </p>
+      </div>
+    </section>
+
+    <footer id="contacto" class="py-3 bg-gray-100">
+      <div class="container d-flex flex-column align-items-center gap-4">
+        <p class="text-center mb-4">Podés contactarme mediante:</p>
+        
+        <!-- Redes Sociales -->
+        <div class="d-flex gap-3 mb-4">
+          <a href="https://github.com/maxiretamoso" target="_blank">
+            <div class="footer-button" style="background-color: #6e5494;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" fill="white">
+                <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/>
+              </svg>
+              <span>GitHub</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/maximoretamoso" target="_blank">
+            <div class="footer-button" style="background-color:#0077b5;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="white">
+                <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.9 0 54.1 0 24.6 24.3 0 53.79 0 83.5 0 107.6 24.3 107.6 54.1 107.6 83.9 83.5 108.1 53.79 108.1zM447.9 448h-92.68V302.4c0-34.7-.7-79.4-48.4-79.4-48.4 0-55.8 37.7-55.8 76.7V448h-92.7V148.9h89V196h1.3c12.4-23.5 42.6-48.4 87.7-48.4 93.8 0 111 61.7 111 141.9V448z"/>
+              </svg>
+              <span>Linkedin</span>
+            </div>
+          </a>
+
+          <a href="mailto:maxiretamosotrotta@gmail.com" target="_blank">
+            <div class="footer-button" style="background-color:#d93025;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="white">
+                <path d="M502.3 190.8L327.4 338c-7.3 6.3-18.1 6.3-25.4 0L9.7 190.8C3.8 186.3 0 179.2 0 171.5V456c0 30.9 25.1 56 56 56h400c30.9 0 56-25.1 56-56V171.5c0-7.7-3.8-14.8-9.7-20.7zM256 304L56 160h400L256 304z"/>
+              </svg>
+              <span>Correo</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </main>
+
+    <!-- Modal de confirmación -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>¡Mensaje Enviado!</h3>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="success-icon">✓</div>
+          <p>Tu mensaje ha sido enviado exitosamente. Te responderé pronto.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn" onclick="closeModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/darkMode.js"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/animations.js"></script>
+    <script src="./js/navbarScroll.js"></script>
+    <script src="./js/carousel.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        document.body.classList.add("loading"); // bloquea scroll al inicio
+
+        setTimeout(() => {
+          const loader = document.getElementById("loader");
+          loader.classList.add("hidden");
+          
+          // Permitir scroll otra vez
+          document.body.classList.remove("loading");
+
+          // Fade in gradual del contenido principal
+          setTimeout(() => {
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+              mainContent.style.opacity = "1";
+            }
+          }, 500);
+
+          // Opcional: remover loader del DOM
+          loader.addEventListener("transitionend", () => loader.remove());
+        }, 3000); // 3 segundos
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Esperar 5 segundos antes de mostrar main y footer
+        setTimeout(() => {
+          const main = document.querySelector("main");
+          const footer = document.querySelector("footer");
+          if(main) main.style.opacity = 1;
+          if(footer) footer.classList.add("visible");
+          
+          // Inicializar AOS manualmente (scroll animations)
+          const sections = document.querySelectorAll("section");
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if(entry.isIntersecting){
+                entry.target.classList.add("aos-animate");
+              }
+            });
+          }, { threshold: 0.1 });
+          
+          sections.forEach(sec => observer.observe(sec));
+
+        }, 5000); // 5000ms = 5 segundos
+      });
+      </script>
+
+  </body>
+</html>
