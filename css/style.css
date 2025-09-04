@@ -5,6 +5,7 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+html { overflow-x: hidden; }
 
 /* NAVBAR */
 .navbar {
@@ -47,11 +48,21 @@ body {
   margin-right: 1.5rem;
   border: 2px solid rgba(54, 195, 84, 0.3);
   transition: all 0.3s ease;
+  transform: rotate(0deg);
 }
 
 .imglogo img:hover {
   border-color: #36c354;
   transform: scale(1.05);
+}
+
+/* Animación giro al click */
+.imglogo img.spin {
+  animation: spin360 0.6s ease;
+}
+@keyframes spin360 {
+  from { transform: rotate(0deg) scale(1.05); }
+  to { transform: rotate(360deg) scale(1.05); }
 }
 
 .navbar-nav {
@@ -96,16 +107,7 @@ body {
   animation: slideIn 0.3s ease;
 }
 
-@keyframes slideIn {
-  from {
-    width: 0;
-    opacity: 0;
-  }
-  to {
-    width: 60%;
-    opacity: 1;
-  }
-}
+@keyframes slideIn { from { width: 0; opacity: 0; } to { width: 60%; opacity: 1; } }
 
 /* PUNTOS DE NAVEGACIÓN VERTICALES */
 .nav-dots {
@@ -609,19 +611,13 @@ section.aos-animate:hover {
   margin-top: 3rem;
 }
 
-.repos-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1F2937;
-  text-align: center;
-  margin-bottom: 2rem;
-}
+/* Heredar estilo de descripción para uniformidad */
+.repos-title { text-align: center; margin-bottom: 2rem; }
 
-.repos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
+/* Modo oscuro: título blanco */
+body.dark-mode .repos-title { color: #ffffff; }
+
+/* .repos-grid ya no se usa (reemplazado por el carrusel) */
 
 .repo-card {
   background: rgba(255, 255, 255, 0.95);
@@ -699,125 +695,125 @@ section.aos-animate:hover {
 
 /* Responsive para Git */
 @media (max-width: 768px) {
+  /* stats: 3 tarjetas en una fila, tamaño reducido para caber sin cortar */
   .git-stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    align-items: stretch;
+    justify-items: center;
+    width: 100%;
   }
-  
-  .repos-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .repo-stats {
-    flex-wrap: wrap;
-  }
-  
-  .repo-links {
+  .stat-card {
+    padding: 0.85rem;
+    min-height: 110px;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0 !important;
+    box-sizing: border-box;
+    aspect-ratio: 1 / 1; /* cuadradas uniformes */
   }
+  .stat-icon { font-size: 1.8rem; margin-bottom: 0.25rem; }
+  .stat-number { font-size: 1.4rem; line-height: 1; }
+  .stat-label { font-size: 0.8rem; }
+  .git-stats, .stat-card { overflow: hidden; }
+  /* .repos-grid no usada en móvil */
+  .repo-stats { flex-wrap: wrap; }
+  .repo-links { flex-direction: column; }
+
+  /* Proyectos: mostrar 1 tarjeta por vista con ancho completo */
+  .proyectos-carousel .carousel-container { max-width: 100%; height: 460px; }
+  .project-card { width: 100%; }
+  /* Mostrar solo indicadores (no flechas) en móvil */
+  .proyectos-carousel .prev-btn,
+  .proyectos-carousel .next-btn,
+  .github-carousel .prev-btn,
+  .github-carousel .next-btn { display: none; }
+  .proyectos-carousel .carousel-indicators,
+  .github-carousel .carousel-indicators { display: flex; }
+
+  /* Evitar desbordes horizontales por efectos hover en móvil */
+  section:hover { transform: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 }
 
-/* TARJETA AJUSTADA */
-.card {
-  display: flex;
-  flex-direction: column;
-  height: 320px; /* más alta para contenido y botón */
-  width: 245px;  /* más ancha */
-  background-color: #a8a5a5 !important; /* color original */
-  border-radius: 15px;
-  box-shadow: -1rem 0 3rem #00000044;
-  transition: 0.4s ease-out;
-  position: relative;
+/* Navbar colapsable en modo oscuro (móvil) */
+body.dark-mode .navbar-collapse.show {
+  background: rgba(34, 34, 34, 0.95);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+body.dark-mode .navbar-collapse.show .nav-link {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.05);
+}
+body.dark-mode .navbar-collapse.show .nav-link:hover {
+  background: rgba(255,255,255,0.12);
+  color: #ffffff !important;
+}
+body.dark-mode .navbar-collapse.show .nav-link.active {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff !important;
 }
 
-
-.card:hover {
-  transform: translateY(-20px);
-  text-shadow: 2px 2px 8px #6e5b94;
-}
-
-.card:hover ~ .card {
-  position: relative;
-  left: 50px;
-  transform: rotateX(-15deg) rotateY(10deg);
-  transition: 0.4s ease-out;
-}
-
-.title-1 {
-  color: #000000;
-  font-size: 28px;
-  font-weight: 800;
-  margin: 20px;
-}
-
-.content {
-  flex-grow: 1;
-  color: #000000;
-  font-size: 0.85rem;
-  margin: 0 20px;
-  margin-top: 60px;
-}
-
-.btn {
-  margin: 10px 20px;
-  width: 120px;
-  height: 36px;
-  border-radius: 8px;
-  border: none;
-  background-color: #4a2f7c;
-  color: #fff;
-  transition: 0.4s ease-out;
-}
-
-.btn:hover {
-  background-color: #8a4ff8;
-  box-shadow: 0px 0px 20px rgba(157, 71, 255, 0.5),
-              0px 5px 5px -1px rgba(163, 58, 233, 0.25),
-              inset 4px 4px 8px rgba(219, 175, 255, 0.5),
-              inset -4px -4px 8px rgba(137, 19, 216, 0.35);
-}
-
-.bar {
-  position: relative;
-  top: 10px;
-  height: 5px;
-  width: 100%;
-}
-
-.emptybar {
-  background-color: #201c29;
-  width: 100%;
-  height: 100%;
-}
-
-.filledbar {
+/* Carrusel GitHub: reutiliza estilo de proyectos */
+.github-carousel .carousel-container { max-width: 1100px; height: auto; }
+.github-carousel .carousel-track { position: relative; min-height: 1px; }
+.github-slide {
   position: absolute;
   top: 0;
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, #6831cfab, #a777ff 100%);
-  transition: 0.6s ease-out;
-}
-
-.card:hover .filledbar {
+  left: 0;
   width: 100%;
-  transition: 0.4s ease-out;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.github-slide.active { opacity: 1; transform: translateX(0); z-index: 2; }
+.github-slide.prev { transform: translateX(-100%); z-index: 1; }
+.github-slide:not(.active):not(.prev) { z-index: 0; }
+
+@media (max-width: 768px) {
+  .github-carousel .carousel-container { max-width: 100%; }
+  .github-slide { grid-template-columns: 1fr; }
 }
 
-/* CAROUSEL */
-.carousel-inner {
-  display: flex;
-  overflow: hidden;
+/* Lenguajes: tarjetas con logo */
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
 }
+.language-card {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.65rem;
+  align-items: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.language-card:hover { transform: translateY(-3px); box-shadow: 0 14px 26px rgba(0,0,0,0.12); }
+.language-logo { width: 26px; height: 26px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.language-name { display:none; }
+.language-pct { font-weight: 700; font-size: 0.95rem; }
+.language-card .bar { grid-column: 1 / -1; height: 8px; background: rgba(54,195,84,0.15); border-radius: 6px; overflow: hidden; }
+.language-card .bar > span { display: block; height: 100%; width: 0; transition: width 0.6s ease; }
+body.dark-mode .language-card { background: rgba(44,44,44,0.95); border-color: rgba(255,255,255,0.1); color: #fff; }
+@media (max-width: 768px) { .languages-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } }
 
-.carousel-item {
-  display: flex !important;
-  justify-content: center;
-}
+/* Nuevo botón Discord */
+.footer-button.discord { background-color: #5865F2; }
 
-.carousel-item .card {
-  margin: 0 auto;
-}
+/* TARJETA AJUSTADA */
+/* Eliminados estilos no usados: .card, .btn, .bar/.emptybar/.filledbar y .carousel-inner/.carousel-item */
 
 /* FOOTER */
 footer {
@@ -833,33 +829,47 @@ footer {
   box-sizing: border-box;
 }
 
+/* Botón volver arriba (estilo carrusel) */
+.back-to-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(54, 195, 84, 0.1);
+  border: 2px solid #36c354;
+  color: #36c354;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  z-index: 1001;
+}
+.back-to-top-btn:hover { background: #36c354; color: #fff; transform: scale(1.1); box-shadow: 0 5px 15px rgba(54,195,84,0.3); }
+.back-to-top-btn.hidden { opacity: 0; pointer-events: none; }
+
+/* Título del footer con mismo estilo que títulos de sección */
+.footer { /* mismo peso/tamaño que .descripcion */
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1F2937;
+  text-align: center;
+  line-height: 1.8;
+  margin: 0.5rem 0 0.5rem 0;
+}
+body.dark-mode .footer { color: #ffffff; }
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-50px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+@keyframes slideIn { from { opacity: 0; transform: translateY(-50px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
+/* Eliminada animación bounce no usada */
 
 .footer-button {
   width: 48px;
