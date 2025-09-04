@@ -482,95 +482,112 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // -------------------- GITHUB API --------------------
-document.addEventListener("DOMContentLoaded", function() {
-  const GITHUB_USERNAME = 'maxiretamoso'; // Cambia por tu username de GitHub
-  const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}`;
-  const GITHUB_REPOS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`;
-
-  // Función para formatear números
-  function formatNumber(num) {
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + 'k';
+// -------------------- GITHUB API --------------------
+document.addEventListener("DOMContentLoaded", function () {
+    const GITHUB_USERNAME = "maxiretamoso";
+    const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}`;
+    const GITHUB_REPOS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`;
+  
+    // Función para formatear números
+    function formatNumber(num) {
+      if (num >= 1000) {
+        return (num / 1000).toFixed(1) + "k";
+      }
+      return num.toString();
     }
-    return num.toString();
-  }
-
-  // Función para obtener estadísticas del usuario
-  async function fetchUserStats() {
-    try {
-      const response = await fetch(GITHUB_API_URL);
-      const user = await response.json();
-      
-      document.getElementById('totalRepos').textContent = formatNumber(user.public_repos);
-      document.getElementById('totalStars').textContent = formatNumber(user.public_gists);
-      document.getElementById('totalForks').textContent = formatNumber(user.followers);
-    } catch (error) {
-      console.error('Error fetching user stats:', error);
-      document.getElementById('totalRepos').textContent = 'Error';
-      document.getElementById('totalStars').textContent = 'Error';
-      document.getElementById('totalForks').textContent = 'Error';
+  
+    // Función para obtener estadísticas del usuario
+    async function fetchUserStats() {
+      try {
+        const response = await fetch(GITHUB_API_URL);
+        const user = await response.json();
+  
+        // Repos totales
+        document.getElementById("totalRepos").textContent = formatNumber(user.public_repos);
+  
+        // Ahora calculamos estrellas y forks recorriendo los repos
+        const reposResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`);
+        const repos = await reposResponse.json();
+  
+        let totalStars = 0;
+        let totalForks = 0;
+        repos.forEach(repo => {
+          totalStars += repo.stargazers_count;
+          totalForks += repo.forks_count;
+        });
+  
+        document.getElementById("totalStars").textContent = formatNumber(totalStars);
+        document.getElementById("totalForks").textContent = formatNumber(totalForks);
+  
+      } catch (error) {
+        console.error("Error fetching user stats:", error);
+        document.getElementById("totalRepos").textContent = "Error";
+        document.getElementById("totalStars").textContent = "Error";
+        document.getElementById("totalForks").textContent = "Error";
+      }
     }
-  }
-
-  // Función para obtener repositorios recientes
-  async function fetchRecentRepos() {
-    try {
-      const response = await fetch(GITHUB_REPOS_URL);
-      const repos = await response.json();
-      
-      const reposGrid = document.getElementById('reposGrid');
-      reposGrid.innerHTML = '';
-      
-      repos.forEach(repo => {
-        const repoCard = document.createElement('div');
-        repoCard.className = 'repo-card';
-        
-        const lastUpdate = new Date(repo.updated_at).toLocaleDateString('es-ES');
-        
-        repoCard.innerHTML = `
-          <div class="repo-name">${repo.name}</div>
-          <div class="repo-description">${repo.description || 'Sin descripción'}</div>
-          <div class="repo-stats">
-            <div class="repo-stat">
-              <span>⭐</span>
-              <span>${formatNumber(repo.stargazers_count)}</span>
+  
+    // Función para obtener repositorios recientes
+    async function fetchRecentRepos() {
+      try {
+        const response = await fetch(GITHUB_REPOS_URL);
+        const repos = await response.json();
+  
+        const reposGrid = document.getElementById("reposGrid");
+        reposGrid.innerHTML = "";
+  
+        repos.forEach(repo => {
+          const repoCard = document.createElement("div");
+          repoCard.className = "repo-card";
+  
+          const lastUpdate = new Date(repo.updated_at).toLocaleDateString("es-ES");
+  
+          repoCard.innerHTML = `
+            <div class="repo-name">${repo.name}</div>
+            <div class="repo-description">${repo.description || "Sin descripción"}</div>
+            <div class="repo-stats">
+              <div class="repo-stat">
+                <span>⭐</span>
+                <span>${formatNumber(repo.stargazers_count)}</span>
+              </div>
+              <div class="repo-stat">
+                <span>🍴</span>
+                <span>${formatNumber(repo.forks_count)}</span>
+              </div>
+              <div class="repo-stat">
+                <span>📅</span>
+                <span>${lastUpdate}</span>
+              </div>
             </div>
-            <div class="repo-stat">
-              <span>🍴</span>
-              <span>${formatNumber(repo.forks_count)}</span>
+            <div class="repo-links">
+              <a href="${repo.html_url}" target="_blank" class="repo-link">Ver Repo</a>
+              ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" class="repo-link">Ver Demo</a>` : ""}
             </div>
-            <div class="repo-stat">
-              <span>📅</span>
-              <span>${lastUpdate}</span>
-            </div>
-          </div>
-          <div class="repo-links">
-            <a href="${repo.html_url}" target="_blank" class="repo-link">Ver Repo</a>
-            ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" class="repo-link">Ver Demo</a>` : ''}
-          </div>
-        `;
-        
-        reposGrid.appendChild(repoCard);
-      });
-    } catch (error) {
-      console.error('Error fetching repos:', error);
-      document.getElementById('reposGrid').innerHTML = '<div class="loading-repos">Error al cargar repositorios</div>';
+          `;
+  
+          reposGrid.appendChild(repoCard);
+        });
+      } catch (error) {
+        console.error("Error fetching repos:", error);
+        document.getElementById("reposGrid").innerHTML =
+          '<div class="loading-repos">Error al cargar repositorios</div>';
+      }
     }
-  }
-
-  // Cargar datos cuando se muestre la sección Git
-  const gitSection = document.getElementById('git');
-  if (gitSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          fetchUserStats();
-          fetchRecentRepos();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    observer.observe(gitSection);
-  }
-});
+  
+    // Cargar datos cuando se muestre la sección GitHub
+    const gitSection = document.getElementById("GitHub");
+    if (gitSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            fetchUserStats();
+            fetchRecentRepos();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+  
+      observer.observe(gitSection);
+    }
+  });
+  
